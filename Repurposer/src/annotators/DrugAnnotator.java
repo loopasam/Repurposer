@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.util.Level;
 
 import bioentities.Drug;
 
@@ -16,9 +17,11 @@ import bioentities.Drug;
  *
  */
 public class DrugAnnotator extends JCasAnnotator_ImplBase{
-
+    
+    //TODO do the lingpipe dicos
+    
     private Pattern mYorktownPattern = Pattern.compile("\\bmicroscope\\b");
-
+    
     /**
      * @see JCasAnnotator_ImplBase#process(JCas)
      */
@@ -33,6 +36,7 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
         annotation.setEnd(matcher.end());
         annotation.setName("Yorktown");
         annotation.addToIndexes();
+        getContext().getLogger().log(Level.INFO, "Found: " + annotation);
       }
     }
 }

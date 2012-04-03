@@ -21,7 +21,7 @@
       <capability>
         <inputs/>
         <outputs>
-          <type allAnnotatorFeatures="true">type.Drug</type>
+          <type allAnnotatorFeatures="true">bioentities.Drug</type>
         </outputs>
         <languagesSupported/>
       </capability>

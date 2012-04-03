@@ -14,7 +14,7 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** An active compound, commercialized by a company.
- * Updated by JCasGen Tue Apr 03 15:18:18 BST 2012
+ * Updated by JCasGen Tue Apr 03 15:47:01 BST 2012
  * @generated */
 public class Drug_Type extends Annotation_Type {
   /** @generated */
@@ -42,23 +42,23 @@ public class Drug_Type extends Annotation_Type {
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.Drug");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("bioentities.Drug");
  
   /** @generated */
-  final Feature casFeat_Name;
+  final Feature casFeat_name;
   /** @generated */
-  final int     casFeatCode_Name;
+  final int     casFeatCode_name;
   /** @generated */ 
   public String getName(int addr) {
-        if (featOkTst && casFeat_Name == null)
-      jcas.throwFeatMissing("Name", "type.Drug");
-    return ll_cas.ll_getStringValue(addr, casFeatCode_Name);
+        if (featOkTst && casFeat_name == null)
+      jcas.throwFeatMissing("name", "bioentities.Drug");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_name);
   }
   /** @generated */    
   public void setName(int addr, String v) {
-        if (featOkTst && casFeat_Name == null)
-      jcas.throwFeatMissing("Name", "type.Drug");
-    ll_cas.ll_setStringValue(addr, casFeatCode_Name, v);}
+        if (featOkTst && casFeat_name == null)
+      jcas.throwFeatMissing("name", "bioentities.Drug");
+    ll_cas.ll_setStringValue(addr, casFeatCode_name, v);}
     
   
 
@@ -71,8 +71,8 @@ public class Drug_Type extends Annotation_Type {
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 
  
-    casFeat_Name = jcas.getRequiredFeatureDE(casType, "Name", "uima.cas.String", featOkTst);
-    casFeatCode_Name  = (null == casFeat_Name) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_Name).getCode();
+    casFeat_name = jcas.getRequiredFeatureDE(casType, "name", "uima.cas.String", featOkTst);
+    casFeatCode_name  = (null == casFeat_name) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_name).getCode();
 
   }
 }

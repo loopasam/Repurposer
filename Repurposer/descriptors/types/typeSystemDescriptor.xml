@@ -6,7 +6,7 @@
   <vendor/>
   <types>
     <typeDescription>
-      <name>type.Drug</name>
+      <name>bioentities.Drug</name>
       <description>An active compound, commercialized by a company.</description>
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>

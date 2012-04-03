@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** An active compound, commercialized by a company.
- * Updated by JCasGen Tue Apr 03 15:18:18 BST 2012
- * XML source: /home/samuel/git/Repurposer/Repurposer/descriptor/typeSystemDescriptor.xml
+ * Updated by JCasGen Tue Apr 03 15:47:01 BST 2012
+ * XML source: /home/samuel/git/Repurposer/Repurposer/descriptors/types/typeSystemDescriptor.xml
  * @generated */
 public class Drug extends Annotation {
   /** @generated
@@ -68,16 +68,16 @@ public class Drug extends Annotation {
   /** getter for Name - gets The name of the drug
    * @generated */
   public String getName() {
-    if (Drug_Type.featOkTst && ((Drug_Type)jcasType).casFeat_Name == null)
-      jcasType.jcas.throwFeatMissing("Name", "type.Drug");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((Drug_Type)jcasType).casFeatCode_Name);}
+    if (Drug_Type.featOkTst && ((Drug_Type)jcasType).casFeat_name == null)
+      jcasType.jcas.throwFeatMissing("name", "bioentities.Drug");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Drug_Type)jcasType).casFeatCode_name);}
     
   /** setter for Name - sets The name of the drug 
    * @generated */
   public void setName(String v) {
-    if (Drug_Type.featOkTst && ((Drug_Type)jcasType).casFeat_Name == null)
-      jcasType.jcas.throwFeatMissing("Name", "type.Drug");
-    jcasType.ll_cas.ll_setStringValue(addr, ((Drug_Type)jcasType).casFeatCode_Name, v);}    
+    if (Drug_Type.featOkTst && ((Drug_Type)jcasType).casFeat_name == null)
+      jcasType.jcas.throwFeatMissing("name", "bioentities.Drug");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Drug_Type)jcasType).casFeatCode_name, v);}    
   }
 
     
