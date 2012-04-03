@@ -32,5 +32,30 @@
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
   </analysisEngineMetaData>
-  <resourceManagerConfiguration/>
+  <externalResourceDependencies>
+    <externalResourceDependency>
+      <key>DrugDictionary</key>
+      <description/>
+      <interfaceName>resources.Dictionary</interfaceName>
+      <optional>false</optional>
+    </externalResourceDependency>
+  </externalResourceDependencies>
+  <resourceManagerConfiguration>
+    <externalResources>
+      <externalResource>
+        <name>DrugDictionaryFile</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:drugDictionary.txt</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>resources.Dictionary_impl</implementationName>
+      </externalResource>
+    </externalResources>
+    <externalResourceBindings>
+      <externalResourceBinding>
+        <key>DrugDictionary</key>
+        <resourceName>DrugDictionaryFile</resourceName>
+      </externalResourceBinding>
+    </externalResourceBindings>
+  </resourceManagerConfiguration>
 </analysisEngineDescription>

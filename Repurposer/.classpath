@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-examples.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-bootstrap.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-tools.jar"/>
+	<classpathentry kind="lib" path="resources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
