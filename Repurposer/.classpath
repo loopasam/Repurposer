@@ -2,5 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/jVinci.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-adapter-soap.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-adapter-vinci.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-core.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-cpe.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-document-annotation.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-examples.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-bootstrap.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-tools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
