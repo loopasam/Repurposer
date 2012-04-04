@@ -49,7 +49,7 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
       String text = aJCas.getDocumentText();
       
      
-      Pattern mYorktownPattern = Pattern.compile(mMap.get("AE"));
+      Pattern mYorktownPattern = Pattern.compile(mMap.get("STM"));
       Matcher matcher = mYorktownPattern.matcher(text);
       while (matcher.find()) {
         // found one - create annotation

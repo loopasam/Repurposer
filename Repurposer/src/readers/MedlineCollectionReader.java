@@ -23,20 +23,14 @@ import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.collection.CollectionException;
 import org.apache.uima.collection.CollectionReader_ImplBase;
-import org.apache.uima.examples.SourceDocumentInformation;
 import org.apache.uima.jcas.JCas;
-import org.apache.uima.jcas.tcas.DocumentAnnotation;
 import org.apache.uima.resource.ResourceConfigurationException;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.apache.uima.util.FileUtils;
-import org.apache.uima.util.Level;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 import org.codehaus.stax2.XMLInputFactory2;
 import org.codehaus.stax2.XMLOutputFactory2;
 import org.codehaus.stax2.evt.XMLEventFactory2;
-
-import core.XMLBurger;
 
 /**
  * @author Samuel Croset
@@ -61,8 +55,6 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
      */
     public void initialize() throws ResourceInitializationException {
 
-	//	System.out.println("initialize");
-
 	File directory = new File(((String) getConfigParameterValue(PARAM_INPUTDIR)).trim());
 	medlineBigFilesCurrentIndex = 0;
 	medlineDocsCurrentIndex = 0;
@@ -78,10 +70,8 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 	try {
 	    addFilesFromDir(directory);
 	} catch (FileNotFoundException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	} catch (XMLStreamException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
@@ -102,14 +92,15 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 		XMLInputFactory readerFactory = XMLInputFactory2.newInstance();
 		XMLEventReader reader = readerFactory.createXMLEventReader(new FileReader(files[i].getPath()));
 
+		int counter = 0;
 		while(reader.hasNext()){
 		    XMLEvent event = reader.nextEvent();
-		    if(event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("MedlineCitation")){
+		    if(event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("MedlineCitation") && counter < 5){
 			StringWriter citationContent = new StringWriter();
 			XMLEventWriter writer = writerFactory	.createXMLEventWriter(citationContent);
 			StartElement rootElem = eventFactory.createStartElement("","", "Root");
 			writer.add(rootElem);
-
+			counter++;
 			while(!(event.isEndElement() && event.asEndElement().getName().getLocalPart().equals("MedlineCitation"))){
 			    event = reader.nextEvent();
 			    writer.add(event);
@@ -118,11 +109,7 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 			medlineDocs.add(citationContent.toString());
 		    }
 		}
-
-
 	    }
-
-
 	}
     }
 
