@@ -4,8 +4,20 @@
 package readers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
+
+import javax.xml.stream.XMLEventFactory;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLEventWriter;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -20,6 +32,9 @@ import org.apache.uima.util.FileUtils;
 import org.apache.uima.util.Level;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
+import org.codehaus.stax2.XMLInputFactory2;
+import org.codehaus.stax2.XMLOutputFactory2;
+import org.codehaus.stax2.evt.XMLEventFactory2;
 
 import core.XMLBurger;
 
@@ -37,17 +52,17 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 
     private ArrayList<File> medlineBigFiles;
     int medlineBigFilesCurrentIndex;
-    
+
     private ArrayList<String> medlineDocs;
     int medlineDocsCurrentIndex;
-    
+
     /**
      * @see org.apache.uima.collection.CollectionReader_ImplBase#initialize()
      */
     public void initialize() throws ResourceInitializationException {
-	
-//	System.out.println("initialize");
-	
+
+	//	System.out.println("initialize");
+
 	File directory = new File(((String) getConfigParameterValue(PARAM_INPUTDIR)).trim());
 	medlineBigFilesCurrentIndex = 0;
 	medlineDocsCurrentIndex = 0;
@@ -60,35 +75,57 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 
 	medlineBigFiles = new ArrayList<File>();
 	medlineDocs = new ArrayList<String>();
-	addFilesFromDir(directory);
+	try {
+	    addFilesFromDir(directory);
+	} catch (FileNotFoundException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (XMLStreamException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 
     /**
      * @param dir
+     * @throws XMLStreamException 
+     * @throws FileNotFoundException 
      */
-    private void addFilesFromDir(File dir) {
+    private void addFilesFromDir(File dir) throws FileNotFoundException, XMLStreamException {
 	File[] files = dir.listFiles();
+
 	for (int i = 0; i < files.length; i++) {
 	    if (!files[i].isDirectory()) {
-		//TODO implement XMLBurger and create discrete jcas in a list
-		XMLBurger cheeseburger = new XMLBurger(files[i].getPath());
-		while(cheeseburger.isNotOver()){
-		    if(cheeseburger.tag("MedlineCitation")){
-			System.out.println("Entering citation");
-			String medlineDoc = null;
-			while(cheeseburger.inTag("MedlineCitation")){
-			    
-			    
-			}
-			medlineDoc = "blablablabla microscope";
-			medlineDocs.add(medlineDoc);
 
+		XMLOutputFactory writerFactory = XMLOutputFactory2.newInstance();
+		XMLEventFactory eventFactory = XMLEventFactory2.newInstance();
+		XMLInputFactory readerFactory = XMLInputFactory2.newInstance();
+		XMLEventReader reader = readerFactory.createXMLEventReader(new FileReader(files[i].getPath()));
+
+		while(reader.hasNext()){
+		    XMLEvent event = reader.nextEvent();
+		    if(event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("MedlineCitation")){
+			StringWriter citationContent = new StringWriter();
+			XMLEventWriter writer = writerFactory	.createXMLEventWriter(citationContent);
+			StartElement rootElem = eventFactory.createStartElement("","", "Root");
+			writer.add(rootElem);
+
+			while(!(event.isEndElement() && event.asEndElement().getName().getLocalPart().equals("MedlineCitation"))){
+			    event = reader.nextEvent();
+			    writer.add(event);
+			}
+			writer.close();
+			medlineDocs.add(citationContent.toString());
 		    }
 		}
-		 
+
+
 	    }
+
+
 	}
     }
+
 
     /**
      * @see org.apache.uima.collection.CollectionReader#hasNext()
