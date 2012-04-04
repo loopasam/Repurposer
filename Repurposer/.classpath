@@ -12,5 +12,10 @@
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-bootstrap.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-tools.jar"/>
 	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/xml-burger-1.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/samuel/git/Repurposer/Repurposer/lib/xml-burger-1.0-doc.jar!/doc"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
