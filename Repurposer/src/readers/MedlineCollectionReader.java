@@ -95,7 +95,7 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 		int counter = 0;
 		while(reader.hasNext()){
 		    XMLEvent event = reader.nextEvent();
-		    if(event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("MedlineCitation") && counter < 5){
+		    if(event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("MedlineCitation")){
 			StringWriter citationContent = new StringWriter();
 			XMLEventWriter writer = writerFactory	.createXMLEventWriter(citationContent);
 			StartElement rootElem = eventFactory.createStartElement("","", "Root");
