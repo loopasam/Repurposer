@@ -15,14 +15,13 @@ import org.apache.uima.resource.ResourceAccessException;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import resources.Dictionary;
-
 import bioentities.Drug;
 
 /**
  * @author Samuel Croset
  *
  */
-public class DrugAnnotator extends JCasAnnotator_ImplBase{
+public class SentenceAnnotator extends JCasAnnotator_ImplBase{
     /** Map from acronyms to their expanded forms */
     private Dictionary mMap;
 

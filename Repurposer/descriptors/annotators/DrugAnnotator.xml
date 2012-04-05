@@ -12,7 +12,7 @@
     <configurationParameterSettings/>
     <typeSystemDescription>
       <imports>
-        <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/types/typeSystemDescriptor.xml"/>
+        <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/types/BioentitiesDescriptor.xml"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>

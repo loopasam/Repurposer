@@ -17,5 +17,6 @@
 			<attribute name="javadoc_location" value="jar:file:/home/samuel/git/Repurposer/Repurposer/lib/xml-burger-1.0-doc.jar!/doc"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/lingpipe-4.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
