@@ -3,77 +3,62 @@
  */
 package annotators;
 
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.AnalysisComponent;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
-import org.apache.uima.resource.ResourceAccessException;
 import org.apache.uima.resource.ResourceInitializationException;
 
-import resources.Dictionary;
-import bioentities.Drug;
+import com.aliasi.chunk.Chunk;
+import com.aliasi.chunk.Chunking;
+import com.aliasi.sentences.MedlineSentenceModel;
+import com.aliasi.sentences.SentenceChunker;
+import com.aliasi.sentences.SentenceModel;
+import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
+import com.aliasi.tokenizer.TokenizerFactory;
+
+import textual_features.Sentence;
 
 /**
  * @author Samuel Croset
  *
  */
 public class SentenceAnnotator extends JCasAnnotator_ImplBase{
-    /** Map from acronyms to their expanded forms */
-    private Dictionary mMap;
+
+    private SentenceChunker SENTENCE_CHUNKER;
 
     /**
      * @see AnalysisComponent#initialize(UimaContext)
      */
     public void initialize(UimaContext aContext) throws ResourceInitializationException {
-      super.initialize(aContext);
-      // get a reference to the String Map Resource
-      try {
-        mMap = (Dictionary) getContext().getResourceObject("DrugDictionary");
-      } catch (ResourceAccessException e) {
-        throw new ResourceInitializationException(e);
-      }
+	super.initialize(aContext);
+
+	TokenizerFactory TOKENIZER_FACTORY = IndoEuropeanTokenizerFactory.INSTANCE;
+	SentenceModel SENTENCE_MODEL = new MedlineSentenceModel();
+	SENTENCE_CHUNKER = new SentenceChunker(TOKENIZER_FACTORY, SENTENCE_MODEL);
+
     }
 
     /**
      * @see JCasAnnotator_ImplBase#process(JCas)
      */
-    public void process(JCas aJCas) {
-      // go through document word-by-word
-      String text = aJCas.getDocumentText();
-      
-     
-      Pattern mYorktownPattern = Pattern.compile(mMap.get("STM"));
-      Matcher matcher = mYorktownPattern.matcher(text);
-      while (matcher.find()) {
-        // found one - create annotation
-        Drug annotation = new Drug(aJCas);
-        annotation.setBegin(matcher.start());
-        annotation.setEnd(matcher.end());
-        annotation.setName("Yorktown");
-        annotation.addToIndexes();
-      }
+    public void process(JCas jcas) {
 
-      
-      
-      int pos = 0;
-      StringTokenizer tokenizer = new StringTokenizer(text, " \t\n\r.<.>/?\";:[{]}\\|=+()!", true);
-      while (tokenizer.hasMoreTokens()) {
-        String token = tokenizer.nextToken();
-        // look up token in map to see if it is an acronym
-        String expandedForm = mMap.get(token);
-        if (expandedForm != null) {
-          // create annotation
-          Drug annot = new Drug(aJCas);
-          annot.setName(expandedForm);
-          annot.addToIndexes();
-        }
-        // incrememnt pos and go to next token
-        pos += token.length();
-      }
+	String text = jcas.getDocumentText();
+
+	Chunking chunking = SENTENCE_CHUNKER.chunk(text.toCharArray(), 0, text.length());
+	Set<Chunk> sentences = chunking.chunkSet();
+
+	for (Chunk sentence : sentences) {
+	    Sentence sentenceAnnotation = new Sentence(jcas);
+	    int start = sentence.start();
+	    int end = sentence.end();
+	    sentenceAnnotation.setBegin(start);
+	    sentenceAnnotation.setEnd(end);
+	    sentenceAnnotation.addToIndexes();
+	}
     }
 
 }

@@ -8,9 +8,9 @@
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
-        <casProcessor deployment="integrated" name="DrugAnnotator">
+        <casProcessor deployment="integrated" name="SentenceAnnotator">
             <descriptor>
-                <import location="../annotators/DrugAnnotator.xml"/>
+                <import location="../annotators/SentenceAnnotator.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
