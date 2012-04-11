@@ -13,6 +13,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import com.aliasi.chunk.Chunk;
 import com.aliasi.chunk.Chunking;
 import com.aliasi.dict.ExactDictionaryChunker;
+import com.aliasi.dict.MapDictionary;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 
 import dictionaries.Dictionary;
@@ -26,7 +27,7 @@ import bioentities.Drug;
  */
 public class DrugAnnotator extends JCasAnnotator_ImplBase{
     /** Map from acronyms to their expanded forms */
-    private DrugBankDictionary dico;
+    private MapDictionary<String> dico;
 
     /**
      * @see AnalysisComponent#initialize(UimaContext)
@@ -35,11 +36,9 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
 	super.initialize(aContext);
 
 	String path = (String) aContext.getConfigParameterValue("DrugDictionaryPath");
-	dico = new DrugBankDictionary();
-	System.out.println("new dico created");
-	System.out.println("starts loading...");
-	dico.load(path);
-	System.out.println("loading done");
+	DrugBankDictionary dicodb = new DrugBankDictionary();
+	dicodb.load(path);
+	dico = dicodb.getLingPipeDictionary();
     }
 
     /**
@@ -48,12 +47,10 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
     public void process(JCas aJCas) {
 
 	String text = aJCas.getDocumentText();
-	System.out.println("creating lingpipe dico");
-	ExactDictionaryChunker chunker = new ExactDictionaryChunker(dico.getLingPipeDictionary(), IndoEuropeanTokenizerFactory.INSTANCE, true,false);
+	ExactDictionaryChunker chunker = new ExactDictionaryChunker(dico, IndoEuropeanTokenizerFactory.INSTANCE, true,false);
 
 	
 	Chunking chunking = chunker.chunk(text);
-	System.out.println("iterates over the chunks: " + chunking.chunkSet().size());
 	for (Chunk chunk : chunking.chunkSet()) {
 	    int start = chunk.start();
 	    int end = chunk.end();
