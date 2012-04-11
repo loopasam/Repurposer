@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>BioDicoManager</name>
+			<type>2</type>
+			<location>/home/samuel/git/BioDicoManager/BioDicoManager</location>
+		</link>
+	</linkedResources>
 </projectDescription>

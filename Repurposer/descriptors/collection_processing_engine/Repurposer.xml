@@ -5,6 +5,14 @@
             <descriptor>
                 <import location="../readers/MedlineCollectionReader.xml"/>
             </descriptor>
+            <configurationParameterSettings>
+                <nameValuePair>
+                    <name>InputDirectory</name>
+                    <value>
+                        <string>/home/samuel/git/Repurposer/Repurposer/data/sample</string>
+                    </value>
+                </nameValuePair>
+            </configurationParameterSettings>
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="3" processingUnitThreadCount="1">
