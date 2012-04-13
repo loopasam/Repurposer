@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-as-jms.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="resources"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BioDicoManager"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/jVinci.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/lingpipe-4.1.0.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-adapter-soap.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-adapter-vinci.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-core.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-cpe.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-document-annotation.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-examples.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-as-activemq.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-as-camel.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-as-core.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uimaj-bootstrap.jar"/>
 	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/uima-tools.jar"/>
-	<classpathentry kind="lib" path="resources"/>
-	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/xml-burger-1.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/home/samuel/git/Repurposer/Repurposer/lib/xml-burger-1.0-doc.jar!/doc"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/lingpipe-4.1.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/BioDicoManager"/>
+	<classpathentry kind="lib" path="/home/samuel/git/Repurposer/Repurposer/lib/xml-burger-1.5.0.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/activemq-camel-5.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/activemq-console-5.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/activemq-core-5.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/activemq-spring-5.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/geronimo-j2ee-management_1.1_spec-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/geronimo-jms_1.1_spec-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/kahadb-5.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-aop-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-asm-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-beans-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-context-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-core-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-expression-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-jms-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/spring-tx-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/samuel/workspace/lib/apache-uima-as-2.3.1/apache-activemq-5.4.1/lib/xbean-spring-3.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
