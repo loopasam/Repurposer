@@ -5,14 +5,24 @@
   <version>1.0</version>
   <vendor/>
   <deployment protocol="jms" provider="activemq">
-    <casPool numberOfCASes="3" initialFsHeapSize="2000000"/>
+    <casPool numberOfCASes="10" initialFsHeapSize="2000000"/>
     <service>
-      <inputQueue endpoint="sam_test" brokerURL="${defaultBrokerURL}" prefetch="1"/>
+      <inputQueue endpoint="sam_test" brokerURL="${defaultBrokerURL}" prefetch="0"/>
       <topDescriptor>
-        <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/annotators/DrugAnnotator.xml"/>
+        <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/annotators/drugAggregatorTest.xml"/>
       </topDescriptor>
-      <analysisEngine async="false">
-        <scaleout numberOfInstances="3"/>
+      <analysisEngine async="true" inputQueueScaleout="1" internalReplyQueueScaleout="1">
+        <scaleout numberOfInstances="1"/>
+        <delegates>
+          <analysisEngine key="DrugAnnotator" async="false">
+            <scaleout numberOfInstances="4"/>
+            <asyncAggregateErrorConfiguration>
+              <getMetadataErrors maxRetries="0" timeout="0" errorAction="terminate"/>
+              <processCasErrors maxRetries="0" timeout="0" continueOnRetryFailure="false" thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
+              <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
+            </asyncAggregateErrorConfiguration>
+          </analysisEngine>
+        </delegates>
         <asyncPrimitiveErrorConfiguration>
           <processCasErrors thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
           <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
