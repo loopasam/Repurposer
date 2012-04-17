@@ -8,7 +8,10 @@ import java.util.Set;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.AnalysisComponent;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
+import org.apache.uima.cas.CASException;
+import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import com.aliasi.chunk.Chunk;
@@ -19,6 +22,7 @@ import com.aliasi.sentences.SentenceModel;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 import com.aliasi.tokenizer.TokenizerFactory;
 
+import textual_features.Roi;
 import textual_features.Sentence;
 
 /**
@@ -46,18 +50,29 @@ public class SentenceAnnotator extends JCasAnnotator_ImplBase{
      */
     public void process(JCas jcas) {
 
-	String text = jcas.getDocumentText();
+	try {
+	    jcas = jcas.getView("final");
+	} catch (CASException e) {
+	    e.printStackTrace();
+	}
 
-	Chunking chunking = SENTENCE_CHUNKER.chunk(text.toCharArray(), 0, text.length());
-	Set<Chunk> sentences = chunking.chunkSet();
+	FSIterator<Annotation> it = jcas.getAnnotationIndex(Roi.type).iterator();
+	while (it.hasNext()) {
+	    Roi roiAnnot = (Roi) it.next();
+	    int roiStartPos = roiAnnot.getBegin();
+	    String roiText = roiAnnot.getCoveredText();
 
-	for (Chunk sentence : sentences) {
-	    Sentence sentenceAnnotation = new Sentence(jcas);
-	    int start = sentence.start();
-	    int end = sentence.end();
-	    sentenceAnnotation.setBegin(start);
-	    sentenceAnnotation.setEnd(end);
-	    sentenceAnnotation.addToIndexes();
+	    Chunking chunking = SENTENCE_CHUNKER.chunk(roiText.toCharArray(), 0, roiText.length());
+	    Set<Chunk> sentences = chunking.chunkSet();
+
+	    for (Chunk sentence : sentences) {
+		Sentence sentenceAnnotation = new Sentence(jcas);
+		int start = sentence.start();
+		int end = sentence.end();
+		sentenceAnnotation.setBegin(roiStartPos + start);
+		sentenceAnnotation.setEnd(roiStartPos + end);
+		sentenceAnnotation.addToIndexes();
+	    }
 	}
     }
 

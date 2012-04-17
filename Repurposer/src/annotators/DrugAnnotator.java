@@ -28,6 +28,7 @@ import bioentities.Drug;
 public class DrugAnnotator extends JCasAnnotator_ImplBase{
     /** Map from acronyms to their expanded forms */
     private MapDictionary<String> dico;
+    private ExactDictionaryChunker chunker;
 
     /**
      * @see AnalysisComponent#initialize(UimaContext)
@@ -39,6 +40,8 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
 	DrugBankDictionary dicodb = new DrugBankDictionary();
 	dicodb.load(path);
 	dico = dicodb.getLingPipeDictionary();
+	chunker = new ExactDictionaryChunker(dico, IndoEuropeanTokenizerFactory.INSTANCE, true,false);
+
     }
 
     /**
@@ -47,7 +50,6 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
     public void process(JCas aJCas) {
 
 	String text = aJCas.getDocumentText();
-	ExactDictionaryChunker chunker = new ExactDictionaryChunker(dico, IndoEuropeanTokenizerFactory.INSTANCE, true,false);
 
 	
 	Chunking chunking = chunker.chunk(text);

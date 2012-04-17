@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Thu Apr 05 09:45:54 BST 2012 */
+/* First created by JCasGen Tue Apr 17 12:45:44 BST 2012 */
 package textual_features;
 
 import org.apache.uima.jcas.JCas;
@@ -11,10 +11,10 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
-/** A natural language sentence.
+/** 
  * Updated by JCasGen Tue Apr 17 12:45:44 BST 2012
  * @generated */
-public class Sentence_Type extends Annotation_Type {
+public class Roi_Type extends Annotation_Type {
   /** @generated */
   @Override
   protected FSGenerator getFSGenerator() {return fsGenerator;}
@@ -22,31 +22,31 @@ public class Sentence_Type extends Annotation_Type {
   private final FSGenerator fsGenerator = 
     new FSGenerator() {
       public FeatureStructure createFS(int addr, CASImpl cas) {
-  			 if (Sentence_Type.this.useExistingInstance) {
+  			 if (Roi_Type.this.useExistingInstance) {
   			   // Return eq fs instance if already created
-  		     FeatureStructure fs = Sentence_Type.this.jcas.getJfsFromCaddr(addr);
+  		     FeatureStructure fs = Roi_Type.this.jcas.getJfsFromCaddr(addr);
   		     if (null == fs) {
-  		       fs = new Sentence(addr, Sentence_Type.this);
-  			   Sentence_Type.this.jcas.putJfsFromCaddr(addr, fs);
+  		       fs = new Roi(addr, Roi_Type.this);
+  			   Roi_Type.this.jcas.putJfsFromCaddr(addr, fs);
   			   return fs;
   		     }
   		     return fs;
-        } else return new Sentence(addr, Sentence_Type.this);
+        } else return new Roi(addr, Roi_Type.this);
   	  }
     };
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = Sentence.typeIndexID;
+  public final static int typeIndexID = Roi.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("textual_features.Sentence");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("textual_features.Roi");
 
 
 
   /** initialize variables to correspond with Cas Type and Features
 	* @generated */
-  public Sentence_Type(JCas jcas, Type casType) {
+  public Roi_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 

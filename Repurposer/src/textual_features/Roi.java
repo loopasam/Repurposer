@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Thu Apr 05 09:45:54 BST 2012 */
+/* First created by JCasGen Tue Apr 17 12:45:44 BST 2012 */
 package textual_features;
 
 import org.apache.uima.jcas.JCas; 
@@ -10,16 +10,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
-/** A natural language sentence.
+/** 
  * Updated by JCasGen Tue Apr 17 12:45:44 BST 2012
  * XML source: /home/samuel/git/Repurposer/Repurposer/descriptors/types/TextualFeaturesDescriptor.xml
  * @generated */
-public class Sentence extends Annotation {
+public class Roi extends Annotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(Sentence.class);
+  public final static int typeIndexID = JCasRegistry.register(Roi.class);
   /** @generated
    * @ordered 
    */
@@ -31,23 +31,23 @@ public class Sentence extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected Sentence() {/* intentionally empty block */}
+  protected Roi() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated */
-  public Sentence(int addr, TOP_Type type) {
+  public Roi(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
   
   /** @generated */
-  public Sentence(JCas jcas) {
+  public Roi(JCas jcas) {
     super(jcas);
     readObject();   
   } 
 
   /** @generated */  
-  public Sentence(JCas jcas, int begin, int end) {
+  public Roi(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
