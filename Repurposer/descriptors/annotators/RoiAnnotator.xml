@@ -5,9 +5,9 @@
   <annotatorImplementationName>annotators.RoiAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>ROIAnnotator</name>
-    <description/>
+    <description>Create a view called "text" containing the title and the abstract text of a medline document.</description>
     <version>1.0</version>
-    <vendor/>
+    <vendor>EBI</vendor>
     <configurationParameters>
       <configurationParameter>
         <name>RoiTagNames</name>

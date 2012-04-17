@@ -51,7 +51,7 @@ public class SentenceAnnotator extends JCasAnnotator_ImplBase{
     public void process(JCas jcas) {
 
 	try {
-	    jcas = jcas.getView("final");
+	    jcas = jcas.getView("text");
 	} catch (CASException e) {
 	    e.printStackTrace();
 	}

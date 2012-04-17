@@ -5,9 +5,9 @@
   <annotatorImplementationName>annotators.SentenceAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>SentenceAnnotator</name>
-    <description/>
+    <description>Annotator for sentence. The sentence model is coming from LingPipe and matching the medline model.</description>
     <version>1.0</version>
-    <vendor/>
+    <vendor>EBI</vendor>
     <configurationParameters/>
     <configurationParameterSettings/>
     <typeSystemDescription>

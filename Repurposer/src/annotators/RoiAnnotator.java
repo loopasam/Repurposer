@@ -87,7 +87,7 @@ public class RoiAnnotator extends JCasAnnotator_ImplBase {
 		return false;
 	}
 
-	protected void generateParesedView(JCas jcas, String viewName)
+	protected void generateParsedView(JCas jcas, String viewName)
 			throws XMLStreamException, CASException, IOException {
 		StringReader reader = new StringReader(jcas.getDocumentText());
 		XMLEventReader parser = inFactory.createXMLEventReader(reader);
@@ -110,8 +110,8 @@ public class RoiAnnotator extends JCasAnnotator_ImplBase {
 	@Override
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
 		try {
-			generateParesedView(jcas, "final");
-			jcas = jcas.getView("final");
+		    generateParsedView(jcas, "text");
+			jcas = jcas.getView("text");
 
 			String docText = jcas.getDocumentText();
 			StringReader docReader = new StringReader(docText);
@@ -122,12 +122,9 @@ public class RoiAnnotator extends JCasAnnotator_ImplBase {
 				XMLEvent event = parser.nextEvent();
 				pos.update(event);
 
-				// TODO support roi nesting
 				if (isROIstart(event)) {
 					int roiStartPos = pos.getPos() + 1; // xmlwriter doesn't
 														// write '>'
-					String roiName = event.asStartElement().getName()
-							.getLocalPart();
 					event = parser.nextEvent();
 					if (!isROIend(event)) { // not empty element
 						do {

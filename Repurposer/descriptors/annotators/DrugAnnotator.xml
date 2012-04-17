@@ -5,9 +5,9 @@
   <annotatorImplementationName>annotators.DrugAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>DrugAnnotator</name>
-    <description/>
+    <description>Annotator for drug names based on a dictionnary.</description>
     <version>1.0</version>
-    <vendor/>
+    <vendor>EBI</vendor>
     <configurationParameters>
       <configurationParameter>
         <name>DrugDictionaryPath</name>
@@ -27,13 +27,16 @@
     <typeSystemDescription>
       <imports>
         <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/types/BioentitiesDescriptor.xml"/>
+        <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/types/TextualFeaturesDescriptor.xml"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs/>
+        <inputs>
+          <type allAnnotatorFeatures="true">textual_features.Roi</type>
+        </inputs>
         <outputs>
           <type allAnnotatorFeatures="true">bioentities.Drug</type>
         </outputs>
