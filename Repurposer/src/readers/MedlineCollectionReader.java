@@ -32,6 +32,7 @@ import org.codehaus.stax2.XMLInputFactory2;
 import org.codehaus.stax2.XMLOutputFactory2;
 import org.codehaus.stax2.evt.XMLEventFactory2;
 
+
 /**
  * @author Samuel Croset
  *
@@ -137,19 +138,6 @@ public class MedlineCollectionReader extends CollectionReader_ImplBase{
 	// put document in CAS
 	jcas.setDocumentText(medlineDoc);
 
-
-	// Also store location of source document in CAS. This information is critical
-	// if CAS Consumers will need to know where the original document contents are located.
-	// For example, the Semantic Search CAS Indexer writes this information into the
-	// search index that it creates, which allows applications that use the search index to
-	// locate the documents that satisfy their semantic queries.
-	//TODO Un-comment and implement meta-info here. The type should be declared in the descriptors.
-	//      SourceDocumentInformation srcDocInfo = new SourceDocumentInformation(jcas);
-	//      srcDocInfo.setUri(file.getAbsoluteFile().toURL().toString());
-	//      srcDocInfo.setOffsetInSource(0);
-	//      srcDocInfo.setDocumentSize((int) file.length());
-	//      srcDocInfo.setLastSegment(mCurrentIndex == mFiles.size());
-	//      srcDocInfo.addToIndexes();
     }
 
     /**

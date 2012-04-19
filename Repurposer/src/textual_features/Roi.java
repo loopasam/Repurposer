@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Tue Apr 17 12:45:44 BST 2012
+ * Updated by JCasGen Thu Apr 19 15:10:36 BST 2012
  * XML source: /home/samuel/git/Repurposer/Repurposer/descriptors/types/TextualFeaturesDescriptor.xml
  * @generated */
 public class Roi extends Annotation {

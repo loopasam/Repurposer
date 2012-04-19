@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Thu Apr 05 09:45:54 BST 2012 */
+/* First created by JCasGen Thu Apr 19 15:10:36 BST 2012 */
 package textual_features;
 
 import org.apache.uima.jcas.JCas; 
@@ -10,16 +10,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
-/** A natural language sentence.
+/** 
  * Updated by JCasGen Thu Apr 19 15:10:36 BST 2012
  * XML source: /home/samuel/git/Repurposer/Repurposer/descriptors/types/TextualFeaturesDescriptor.xml
  * @generated */
-public class Sentence extends Annotation {
+public class MetaInformation extends Annotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(Sentence.class);
+  public final static int typeIndexID = JCasRegistry.register(MetaInformation.class);
   /** @generated
    * @ordered 
    */
@@ -31,23 +31,23 @@ public class Sentence extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected Sentence() {/* intentionally empty block */}
+  protected MetaInformation() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated */
-  public Sentence(int addr, TOP_Type type) {
+  public MetaInformation(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
   
   /** @generated */
-  public Sentence(JCas jcas) {
+  public MetaInformation(JCas jcas) {
     super(jcas);
     readObject();   
   } 
 
   /** @generated */  
-  public Sentence(JCas jcas, int begin, int end) {
+  public MetaInformation(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -60,6 +60,24 @@ public class Sentence extends Annotation {
   @generated modifiable */
   private void readObject() {/*default - does nothing empty block */}
      
-}
+ 
+    
+  //*--------------*
+  //* Feature: pmid
+
+  /** getter for pmid - gets 
+   * @generated */
+  public String getPmid() {
+    if (MetaInformation_Type.featOkTst && ((MetaInformation_Type)jcasType).casFeat_pmid == null)
+      jcasType.jcas.throwFeatMissing("pmid", "textual_features.MetaInformation");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((MetaInformation_Type)jcasType).casFeatCode_pmid);}
+    
+  /** setter for pmid - sets  
+   * @generated */
+  public void setPmid(String v) {
+    if (MetaInformation_Type.featOkTst && ((MetaInformation_Type)jcasType).casFeat_pmid == null)
+      jcasType.jcas.throwFeatMissing("pmid", "textual_features.MetaInformation");
+    jcasType.ll_cas.ll_setStringValue(addr, ((MetaInformation_Type)jcasType).casFeatCode_pmid, v);}    
+  }
 
     

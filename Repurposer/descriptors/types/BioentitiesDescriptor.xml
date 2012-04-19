@@ -17,5 +17,17 @@
         </featureDescription>
       </features>
     </typeDescription>
+    <typeDescription>
+      <name>bioentities.Disease</name>
+      <description/>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>name</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
   </types>
 </typeSystemDescription>

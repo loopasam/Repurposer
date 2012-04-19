@@ -28,9 +28,9 @@
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
-        <casProcessor deployment="integrated" name="DrugAnnotator">
+        <casProcessor deployment="integrated" name="PmidAnnotator">
             <descriptor>
-                <import location="../annotators/DrugAnnotator.xml"/>
+                <import location="../annotators/PmidAnnotator.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
@@ -40,9 +40,9 @@
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
-        <casProcessor deployment="integrated" name="Xmi Writer CAS Consumer">
+        <casProcessor deployment="integrated" name="AssociationDrugDisease">
             <descriptor>
-                <import location="../../../../../workspace/uimaj-examples/descriptors/cas_consumer/XmiWriterCasConsumer.xml"/>
+                <import location="../consumers/AssociationDrugDisease.xml"/>
             </descriptor>
             <deploymentParameters/>
             <errorHandling>
@@ -51,14 +51,6 @@
                 <timeout max="100000" default="-1"/>
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
-            <configurationParameterSettings>
-                <nameValuePair>
-                    <name>OutputDirectory</name>
-                    <value>
-                        <string>/home/samuel/git/Repurposer/Repurposer/data/sample/xmi_output</string>
-                    </value>
-                </nameValuePair>
-            </configurationParameterSettings>
         </casProcessor>
     </casProcessors>
     <cpeConfig>

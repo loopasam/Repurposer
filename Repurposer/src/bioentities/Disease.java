@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Tue Apr 03 15:18:18 BST 2012 */
+/* First created by JCasGen Thu Apr 19 13:12:04 BST 2012 */
 package bioentities;
 
 import org.apache.uima.jcas.JCas; 
@@ -10,16 +10,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 import org.apache.uima.jcas.tcas.Annotation;
 
 
-/** An active compound, commercialized by a company.
+/** 
  * Updated by JCasGen Thu Apr 19 13:12:04 BST 2012
  * XML source: /home/samuel/git/Repurposer/Repurposer/descriptors/types/BioentitiesDescriptor.xml
  * @generated */
-public class Drug extends Annotation {
+public class Disease extends Annotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(Drug.class);
+  public final static int typeIndexID = JCasRegistry.register(Disease.class);
   /** @generated
    * @ordered 
    */
@@ -31,23 +31,23 @@ public class Drug extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected Drug() {/* intentionally empty block */}
+  protected Disease() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated */
-  public Drug(int addr, TOP_Type type) {
+  public Disease(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
   
   /** @generated */
-  public Drug(JCas jcas) {
+  public Disease(JCas jcas) {
     super(jcas);
     readObject();   
   } 
 
   /** @generated */  
-  public Drug(JCas jcas, int begin, int end) {
+  public Disease(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -63,21 +63,21 @@ public class Drug extends Annotation {
  
     
   //*--------------*
-  //* Feature: Name
+  //* Feature: name
 
-  /** getter for Name - gets The name of the drug
+  /** getter for name - gets 
    * @generated */
   public String getName() {
-    if (Drug_Type.featOkTst && ((Drug_Type)jcasType).casFeat_name == null)
-      jcasType.jcas.throwFeatMissing("name", "bioentities.Drug");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((Drug_Type)jcasType).casFeatCode_name);}
+    if (Disease_Type.featOkTst && ((Disease_Type)jcasType).casFeat_name == null)
+      jcasType.jcas.throwFeatMissing("name", "bioentities.Disease");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Disease_Type)jcasType).casFeatCode_name);}
     
-  /** setter for Name - sets The name of the drug 
+  /** setter for name - sets  
    * @generated */
   public void setName(String v) {
-    if (Drug_Type.featOkTst && ((Drug_Type)jcasType).casFeat_name == null)
-      jcasType.jcas.throwFeatMissing("name", "bioentities.Drug");
-    jcasType.ll_cas.ll_setStringValue(addr, ((Drug_Type)jcasType).casFeatCode_name, v);}    
+    if (Disease_Type.featOkTst && ((Disease_Type)jcasType).casFeat_name == null)
+      jcasType.jcas.throwFeatMissing("name", "bioentities.Disease");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Disease_Type)jcasType).casFeatCode_name, v);}    
   }
 
     
