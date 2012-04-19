@@ -40,6 +40,30 @@
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
         </casProcessor>
+        <casProcessor deployment="integrated" name="DrugAnnotator">
+            <descriptor>
+                <import location="../annotators/DrugAnnotator.xml"/>
+            </descriptor>
+            <deploymentParameters/>
+            <errorHandling>
+                <errorRateThreshold action="terminate" value="0/1000"/>
+                <maxConsecutiveRestarts action="terminate" value="30"/>
+                <timeout max="100000" default="-1"/>
+            </errorHandling>
+            <checkpoint batch="10000" time="1000ms"/>
+        </casProcessor>
+        <casProcessor deployment="integrated" name="DiseaseAnnotator">
+            <descriptor>
+                <import location="../annotators/DiseaseAnnotator.xml"/>
+            </descriptor>
+            <deploymentParameters/>
+            <errorHandling>
+                <errorRateThreshold action="terminate" value="0/1000"/>
+                <maxConsecutiveRestarts action="terminate" value="30"/>
+                <timeout max="100000" default="-1"/>
+            </errorHandling>
+            <checkpoint batch="10000" time="1000ms"/>
+        </casProcessor>
         <casProcessor deployment="integrated" name="AssociationDrugDisease">
             <descriptor>
                 <import location="../consumers/AssociationDrugDisease.xml"/>
@@ -51,6 +75,26 @@
                 <timeout max="100000" default="-1"/>
             </errorHandling>
             <checkpoint batch="10000" time="1000ms"/>
+        </casProcessor>
+        <casProcessor deployment="integrated" name="Xmi Writer CAS Consumer">
+            <descriptor>
+                <import location="../../../../../workspace/uimaj-examples/descriptors/cas_consumer/XmiWriterCasConsumer.xml"/>
+            </descriptor>
+            <deploymentParameters/>
+            <errorHandling>
+                <errorRateThreshold action="terminate" value="0/1000"/>
+                <maxConsecutiveRestarts action="terminate" value="30"/>
+                <timeout max="100000" default="-1"/>
+            </errorHandling>
+            <checkpoint batch="10000" time="1000ms"/>
+            <configurationParameterSettings>
+                <nameValuePair>
+                    <name>OutputDirectory</name>
+                    <value>
+                        <string>/home/samuel/git/Repurposer/Repurposer/data/out</string>
+                    </value>
+                </nameValuePair>
+            </configurationParameterSettings>
         </casProcessor>
     </casProcessors>
     <cpeConfig>

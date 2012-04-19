@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>InputDirectory</name>
         <value>
-          <string>/home/samuel/git/Repurposer/Repurposer/data/sample/small</string>
+          <string>/home/samuel/git/Repurposer/Repurposer/data/sample/small/</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

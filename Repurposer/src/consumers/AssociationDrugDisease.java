@@ -7,33 +7,25 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.AnalysisComponent;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.cas.FSIterator;
-import org.apache.uima.collection.CasConsumer_ImplBase;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.apache.uima.resource.ResourceProcessException;
 
-import textual_features.MetaInformation;
-import textual_features.Roi;
+
+import analysis.Association;
+import analysis.AssociationReport;
 import bioentities.Disease;
 import bioentities.Drug;
 
-import com.aliasi.chunk.Chunk;
-import com.aliasi.chunk.Chunking;
-import com.aliasi.dict.ExactDictionaryChunker;
-import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
+import textual_features.MetaInformation;
 
-import dictionaries.DrugBankDictionary;
 
 /**
  * @author Samuel Croset
@@ -41,44 +33,102 @@ import dictionaries.DrugBankDictionary;
  */
 public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 
+    AssociationReport report;
+    int numberOfCas = 0;
 
 
+    /**
+     * @see AnalysisComponent#initialize(UimaContext)
+     */
+    public void initialize(UimaContext aContext) throws ResourceInitializationException {
+
+	super.initialize(aContext);
+
+	//	String path = (String) aContext.getConfigParameterValue("DrugDictionaryPath");
+	report = new AssociationReport();
+
+    }
 
     /**
      * @see JCasAnnotator_ImplBase#process(JCas)
      */
     public void process(JCas jcas) {
 
-	//	try {
-	//	    jcas = jcas.getView("text");
-	//	} catch (CASException e) {
-	//	    e.printStackTrace();
-	//	}
-
-	BufferedWriter out = null;
 	try {
-	    out = new BufferedWriter(new FileWriter("data/outfilename.txt"));
-	} catch (IOException e1) {
-	    e1.printStackTrace();
+	    jcas = jcas.getView("text");
+	} catch (CASException e) {
+	    e.printStackTrace();
+	}
+	
+	numberOfCas++;
+
+	FSIterator<Annotation> itpmid = jcas.getAnnotationIndex(MetaInformation.type).iterator();
+	FSIterator<Annotation> itDrug = jcas.getAnnotationIndex(Drug.type).iterator();
+	FSIterator<Annotation> itDisease = jcas.getAnnotationIndex(Disease.type).iterator();
+
+	String pmid = null;
+	if(itpmid.hasNext()){
+	    MetaInformation metaAnnot = (MetaInformation) itpmid.next();
+	    pmid = metaAnnot.getPmid();
+	}
+	
+	ArrayList<Drug> drugs = new ArrayList<Drug>();
+	while(itDrug.hasNext()){
+	    Drug drugAnnot = (Drug) itDrug.next();
+	    drugs.add(drugAnnot);
+	}
+	
+	ArrayList<Disease> diseases = new ArrayList<Disease>();
+	while(itDisease.hasNext()){
+	    Disease diseaseAnnot = (Disease) itDisease.next();
+	    diseases.add(diseaseAnnot);
 	}
 
-	FSIterator<Annotation> it = jcas.getAnnotationIndex(MetaInformation.type).iterator();
-	while(it.hasNext()){
-	    MetaInformation meta = (MetaInformation) it.next();
-	    try {
-		out.write(meta.getPmid());
-	    } catch (IOException e) {
-		e.printStackTrace();
+	for (Drug drug : drugs) {
+	    for (Disease disease : diseases) {
+		report.addAssociation(drug.getName(), disease.getName(), pmid);
 	    }
-	    System.out.println("meta: " + meta.getPmid());
 	}
 
+    }
+
+    /* (non-Javadoc)
+     * @see org.apache.uima.analysis_component.AnalysisComponent_ImplBase#collectionProcessComplete()
+     */
+    @Override
+    public void collectionProcessComplete()
+    throws AnalysisEngineProcessException {
+	
+	FileWriter out = null;
 	try {
-	    out.close();
+	    out = new FileWriter("data/report.txt");
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-
-
+	BufferedWriter bw = new BufferedWriter(out);
+	
+	System.out.println("printing report...");
+	
+	try {
+	    bw.write("===Number of document: " + numberOfCas + "===");
+	} catch (IOException e1) {
+	    e1.printStackTrace();
+	}
+	
+	for (Association association : report.getAssociations()) {
+	    try {
+		bw.write(association.getDrug() + " associated_with " + association.getDisease() + " --> " + association.getNumberOfObservation() + "\n");
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	}
+	
+	try {
+	    bw.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	
+	System.out.println("collection analyzed");
     }
 }
