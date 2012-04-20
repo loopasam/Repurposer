@@ -73,7 +73,7 @@ public class ClientTest {
 	HashMap<String, Object> context = new HashMap<String, Object>();
 	context.put(UimaAsynchronousEngine.ServerUri, "tcp://samuel-Latitude-E6510:61616");
 	context.put(UimaAsynchronousEngine.Endpoint, "sam_test");
-	context.put(UimaAsynchronousEngine.CasPoolSize, 4);
+	context.put(UimaAsynchronousEngine.CasPoolSize, 10);
 	context.put(UimaAsynchronousEngine.SerializationStrategy, "binary");
 
 	CollectionReaderDescription collectionReaderDescription = UIMAFramework.getXMLParser()

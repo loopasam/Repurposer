@@ -101,7 +101,7 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 
 	FileWriter out = null;
 	try {
-	    out = new FileWriter("data/report.txt");
+	    out = new FileWriter("/home/samuel/git/Repurposer/Repurposer/data/report.txt");
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

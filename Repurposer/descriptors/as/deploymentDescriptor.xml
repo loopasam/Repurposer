@@ -11,50 +11,8 @@
       <topDescriptor>
         <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/aggregates/DrugDiseaseAssociation.xml"/>
       </topDescriptor>
-      <analysisEngine async="true">
+      <analysisEngine async="false">
         <scaleout numberOfInstances="1"/>
-        <delegates>
-          <analysisEngine key="RoiAnnotator" async="false">
-            <scaleout numberOfInstances="1"/>
-            <asyncAggregateErrorConfiguration>
-              <getMetadataErrors maxRetries="0" timeout="0" errorAction="terminate"/>
-              <processCasErrors maxRetries="0" timeout="0" continueOnRetryFailure="false" thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
-              <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
-            </asyncAggregateErrorConfiguration>
-          </analysisEngine>
-          <analysisEngine key="DiseaseAnnotator" async="false">
-            <scaleout numberOfInstances="1"/>
-            <asyncAggregateErrorConfiguration>
-              <getMetadataErrors maxRetries="0" timeout="0" errorAction="terminate"/>
-              <processCasErrors maxRetries="0" timeout="0" continueOnRetryFailure="false" thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
-              <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
-            </asyncAggregateErrorConfiguration>
-          </analysisEngine>
-          <analysisEngine key="DrugAnnotator" async="false">
-            <scaleout numberOfInstances="1"/>
-            <asyncAggregateErrorConfiguration>
-              <getMetadataErrors maxRetries="0" timeout="0" errorAction="terminate"/>
-              <processCasErrors maxRetries="0" timeout="0" continueOnRetryFailure="false" thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
-              <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
-            </asyncAggregateErrorConfiguration>
-          </analysisEngine>
-          <analysisEngine key="PmidAnnotator" async="false">
-            <scaleout numberOfInstances="1"/>
-            <asyncAggregateErrorConfiguration>
-              <getMetadataErrors maxRetries="0" timeout="0" errorAction="terminate"/>
-              <processCasErrors maxRetries="0" timeout="0" continueOnRetryFailure="false" thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
-              <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
-            </asyncAggregateErrorConfiguration>
-          </analysisEngine>
-          <analysisEngine key="AssociationDrugDisease" async="false">
-            <scaleout numberOfInstances="1"/>
-            <asyncAggregateErrorConfiguration>
-              <getMetadataErrors maxRetries="0" timeout="0" errorAction="terminate"/>
-              <processCasErrors maxRetries="0" timeout="0" continueOnRetryFailure="false" thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
-              <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
-            </asyncAggregateErrorConfiguration>
-          </analysisEngine>
-        </delegates>
         <asyncPrimitiveErrorConfiguration>
           <processCasErrors thresholdCount="0" thresholdWindow="0" thresholdAction="terminate"/>
           <collectionProcessCompleteErrors timeout="0" additionalErrorAction="terminate"/>
