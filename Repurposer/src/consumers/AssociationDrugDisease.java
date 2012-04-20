@@ -18,11 +18,6 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
-import exporter.CytoscapeGraph;
-import exporter.Edge;
-import exporter.Node;
-import exporter.Relation;
-
 
 import analysis.Association;
 import analysis.AssociationReport;
