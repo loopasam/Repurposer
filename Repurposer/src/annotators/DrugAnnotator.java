@@ -19,6 +19,7 @@ import textual_features.Roi;
 import com.aliasi.chunk.Chunk;
 import com.aliasi.chunk.Chunking;
 import com.aliasi.dict.ExactDictionaryChunker;
+import com.aliasi.dict.MapDictionary;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 
 import dictionaries.DrugBankDictionary;
@@ -32,6 +33,7 @@ import bioentities.Drug;
 public class DrugAnnotator extends JCasAnnotator_ImplBase{
     /** Map from acronyms to their expanded forms */
     private DrugBankDictionary dico;
+    private MapDictionary<String> lingpipedico;
     private ExactDictionaryChunker chunker;
 
     /**
@@ -44,7 +46,8 @@ public class DrugAnnotator extends JCasAnnotator_ImplBase{
 	String path = (String) aContext.getConfigParameterValue("DrugDictionaryPath");
 	dico = new DrugBankDictionary();
 	dico.load(path);
-	chunker = new ExactDictionaryChunker(dico, IndoEuropeanTokenizerFactory.INSTANCE, true,true);
+	lingpipedico = dico.getLingPipeDico();
+	chunker = new ExactDictionaryChunker(lingpipedico, IndoEuropeanTokenizerFactory.INSTANCE, true,true);
 
     }
 

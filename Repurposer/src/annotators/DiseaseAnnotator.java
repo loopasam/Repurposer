@@ -18,6 +18,7 @@ import bioentities.Disease;
 import com.aliasi.chunk.Chunk;
 import com.aliasi.chunk.Chunking;
 import com.aliasi.dict.ExactDictionaryChunker;
+import com.aliasi.dict.MapDictionary;
 import com.aliasi.tokenizer.IndoEuropeanTokenizerFactory;
 
 import dictionaries.DiseaseDictionary;
@@ -29,6 +30,8 @@ import dictionaries.DiseaseDictionary;
 public class DiseaseAnnotator extends JCasAnnotator_ImplBase {
     /** Map from acronyms to their expanded forms */
     private DiseaseDictionary dico;
+    private MapDictionary<String> lingpipedico;
+
     private ExactDictionaryChunker chunker;
 
     /**
@@ -41,7 +44,8 @@ public class DiseaseAnnotator extends JCasAnnotator_ImplBase {
 	String path = (String) aContext.getConfigParameterValue("DiseaseDictionaryPath");
 	dico = new DiseaseDictionary();
 	dico.load(path);
-	chunker = new ExactDictionaryChunker(dico, IndoEuropeanTokenizerFactory.INSTANCE, true,true);
+	lingpipedico = dico.getLingPipeDico();
+	chunker = new ExactDictionaryChunker(lingpipedico, IndoEuropeanTokenizerFactory.INSTANCE, true,true);
 
     }
 

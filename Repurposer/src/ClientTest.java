@@ -39,8 +39,6 @@ public class ClientTest {
     private static class CallbackListener extends UimaAsBaseCallbackListener {
 	@Override
 	public void entityProcessComplete(CAS cas, EntityProcessStatus aStatus) {
-	    
-	    
 	
 	    JCas jcas = null;
 	    try {
