@@ -18,6 +18,11 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import exporter.CytoscapeGraph;
+import exporter.Edge;
+import exporter.Node;
+import exporter.Relation;
+
 
 import analysis.Association;
 import analysis.AssociationReport;
@@ -59,7 +64,7 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 	} catch (CASException e) {
 	    e.printStackTrace();
 	}
-	
+
 	numberOfCas++;
 
 	FSIterator<Annotation> itpmid = jcas.getAnnotationIndex(MetaInformation.type).iterator();
@@ -71,13 +76,13 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 	    MetaInformation metaAnnot = (MetaInformation) itpmid.next();
 	    pmid = metaAnnot.getPmid();
 	}
-	
+
 	ArrayList<Drug> drugs = new ArrayList<Drug>();
 	while(itDrug.hasNext()){
 	    Drug drugAnnot = (Drug) itDrug.next();
 	    drugs.add(drugAnnot);
 	}
-	
+
 	ArrayList<Disease> diseases = new ArrayList<Disease>();
 	while(itDisease.hasNext()){
 	    Disease diseaseAnnot = (Disease) itDisease.next();
@@ -85,7 +90,7 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 	}
 
 	for (Drug drug : drugs) {
-	    for (Disease disease : diseases) {
+	    for (Disease disease : diseases) {		
 		report.addAssociation(drug.getName(), disease.getName(), pmid);
 	    }
 	}
@@ -98,7 +103,7 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
     @Override
     public void collectionProcessComplete()
     throws AnalysisEngineProcessException {
-	
+
 	FileWriter out = null;
 	try {
 	    out = new FileWriter("data/report.txt");
@@ -106,15 +111,15 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 	    e.printStackTrace();
 	}
 	BufferedWriter bw = new BufferedWriter(out);
-	
+
 	System.out.println("printing report...");
-	
+
 	try {
-	    bw.write("===Number of document: " + numberOfCas + "===");
+	    bw.write("===Number of document: " + numberOfCas + "===\n");
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	}
-	
+
 	for (Association association : report.getAssociations()) {
 	    try {
 		bw.write(association.getDrug() + " associated_with " + association.getDisease() + " --> " + association.getNumberOfObservation() + "\n");
@@ -122,13 +127,13 @@ public class AssociationDrugDisease extends JCasAnnotator_ImplBase {
 		e.printStackTrace();
 	    }
 	}
-	
+
 	try {
 	    bw.close();
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	
+
 	System.out.println("collection analyzed");
     }
 }

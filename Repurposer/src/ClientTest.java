@@ -71,9 +71,7 @@ public class ClientTest {
 	BaseUIMAAsynchronousEngine_impl asClient = new BaseUIMAAsynchronousEngine_impl();
 
 	
-//	UimaAsynchronousEngine asClient = new BaseUIMAAsynchronousEngine_impl();
 	asClient.addStatusCallbackListener(new CallbackListener());
-//
 	HashMap<String, Object> context = new HashMap<String, Object>();
 	context.put(UimaAsynchronousEngine.ServerUri, "tcp://samuel-Latitude-E6510:61616");
 	context.put(UimaAsynchronousEngine.Endpoint, "sam_test");

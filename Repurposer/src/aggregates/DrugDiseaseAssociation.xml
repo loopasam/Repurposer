@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>false</primitive>
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="RoiAnnotator">
+      <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/annotators/RoiAnnotator.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DiseaseAnnotator">
+      <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/annotators/DiseaseAnnotator.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="DrugAnnotator">
+      <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/annotators/DrugAnnotator.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="PmidAnnotator">
+      <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/annotators/PmidAnnotator.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="AssociationDrugDisease">
+      <import location="/home/samuel/git/Repurposer/Repurposer/descriptors/consumers/AssociationDrugDisease.xml"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
+    <name>DrugDiseaseAssociation</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters/>
+    <configurationParameterSettings/>
+    <flowConstraints>
+      <fixedFlow>
+        <node>RoiAnnotator</node>
+        <node>PmidAnnotator</node>
+        <node>DrugAnnotator</node>
+        <node>DiseaseAnnotator</node>
+        <node>AssociationDrugDisease</node>
+      </fixedFlow>
+    </flowConstraints>
+    <fsIndexCollection/>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs/>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>

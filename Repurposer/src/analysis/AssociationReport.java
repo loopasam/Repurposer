@@ -47,7 +47,6 @@ public class AssociationReport {
 		    association.setNumberOfObservation(before + 1);
 		    association.getPmids().add(pmid);
 		    exists = true;
-		    break;
 		}
 	    }
 	}
